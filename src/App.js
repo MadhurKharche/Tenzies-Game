@@ -6,12 +6,12 @@ import "./App.css";
 function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
+  const [rollsNeeded, setRollsNeeded] = useState(0);
 
   useEffect(() => {
     const firstVal = dice[0].value;
     const allHeld = dice.every((die) => die.held);
     const allSame = dice.every((die) => die.value === firstVal);
-
     if (allHeld && allSame) {
       setTenzies(true);
     }
@@ -39,6 +39,8 @@ function App() {
   }
 
   function rollUnHeldDice() {
+    setRollsNeeded(rollsNeeded + 1);
+    console.log(rollsNeeded);
     if (!tenzies) {
       setDice((oldDice) =>
         oldDice.map((die, index) =>
@@ -49,6 +51,7 @@ function App() {
       );
     } else {
       setDice(allNewDice());
+      setRollsNeeded(0);
       setTenzies(false);
     }
   }
@@ -67,8 +70,14 @@ function App() {
       <div className="game-info">
         <h1>Tenzies</h1>
         <p>
-          Roll until all dice are the same. Click each die to freeze it at its
-          current value between rolls.
+          {tenzies ? (
+            <p>Finished in {rollsNeeded} rolls</p>
+          ) : (
+            <p>
+              Roll until all dice are the same. Click each die to freeze it at
+              its current value between rolls.
+            </p>
+          )}
         </p>
       </div>
 
