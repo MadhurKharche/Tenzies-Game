@@ -19,6 +19,14 @@ main {
   padding-inline: 50px;
 }
 
+.game-info {
+  text-align: center;
+}
+
+.game-info > h1 {
+  margin-bottom: 20px;
+}
+
 h1 {
   color: #2b283a;
   font-size: 3rem;
@@ -31,7 +39,7 @@ p {
   margin: 0;
 }
 
-main > button {
+button {
   min-width: 20%;
   height: 50px;
   padding-inline: 20px;

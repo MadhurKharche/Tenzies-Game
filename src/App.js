@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Confetti from "react-confetti";
 import Die from "./components/Die";
 import "./App.css";
 
@@ -32,9 +33,7 @@ function App() {
   function holdDice(id) {
     setDice((oldDice) =>
       oldDice.map((oldDie) => {
-        return oldDie.id === id
-          ? { ...oldDie, held: !oldDie.held }
-          : { oldDie };
+        return oldDie.id === id ? { ...oldDie, held: !oldDie.held } : oldDie;
       })
     );
   }
@@ -64,11 +63,15 @@ function App() {
 
   return (
     <main>
-      <h1>Tenzies</h1>
-      <p>
-        Roll until all dice are the same. Click each die to freeze it at its
-        current value between rolls.
-      </p>
+      {tenzies && <Confetti />}
+      <div className="game-info">
+        <h1>Tenzies</h1>
+        <p>
+          Roll until all dice are the same. Click each die to freeze it at its
+          current value between rolls.
+        </p>
+      </div>
+
       <div className="dice-grid">{diceElements}</div>
       <button onClick={rollUnHeldDice}>
         {tenzies ? "Reset Game" : "Roll"}
