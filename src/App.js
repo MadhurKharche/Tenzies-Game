@@ -73,9 +73,7 @@ function App() {
       </div>
 
       <div className="dice-grid">{diceElements}</div>
-      <button onClick={rollUnHeldDice}>
-        {tenzies ? "Reset Game" : "Roll"}
-      </button>
+      <button onClick={rollUnHeldDice}>{tenzies ? "New Game" : "Roll"}</button>
     </main>
   );
 }
